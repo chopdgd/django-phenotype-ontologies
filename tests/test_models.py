@@ -10,8 +10,6 @@ Tests for `django-phenotype-ontologies` models module.
 
 from django.test import TestCase
 
-from phenotype_ontologies import models
-
 
 class TestPhenotype_ontologies(TestCase):
 
