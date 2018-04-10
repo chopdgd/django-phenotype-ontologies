@@ -62,6 +62,7 @@ setup(
         'django-genomix==0.6.0',
         'django-model-utils==3.1.1',
         'graphene-django==2.0.0',
+        'pronto==0.10.2',
     ],
     license="MIT",
     zip_safe=False,
