@@ -16,21 +16,20 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--source',
-            dest='source',
+            '--ontology',
+            dest='ontology',
             choices=['HP', 'MONDO', 'NCIT'],
-            default='MONDO',
             help='Ontology Source',
         )
 
     def handle(self, *args, **options):
-        if options['source'] == 'HP':
+        if options['ontology'] == 'HP':
             purl = app_settings.HPO_PURL
 
-        elif options['source'] == 'MONDO':
+        elif options['ontology'] == 'MONDO':
             purl = app_settings.MONDO_PURL
 
-        elif options['source'] == 'NCIT':
+        elif options['ontology'] == 'NCIT':
             purl = app_settings.NCIT_PURL
 
         logger.info('Downloading {0}...'.format(purl))
@@ -38,7 +37,7 @@ class Command(BaseCommand):
 
         version = data.meta['data-version'][0]
         version_obj, version_created = models.Ontology.objects.get_or_create(
-            type=getattr(choices.ONTOLOGY, options['source']),
+            type=getattr(choices.ONTOLOGY, options['ontology']),
             label=version,
         )
 
