@@ -59,7 +59,9 @@ Add Django Phenotype Ontologies's URL patterns:
 Features
 --------
 
-* TODO
+* syncs OBO from MONDO, HPO, and NCIT (OncoTree)
+* REST API to interact with models
+* GraphQL Nodes to be incorporated to existing GraphQL setups with graphene_django
 
 Running Tests
 -------------
