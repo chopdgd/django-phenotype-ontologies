@@ -5,18 +5,18 @@ Django Phenotype Ontologies
 .. image:: https://badge.fury.io/py/django-phenotype-ontologies.svg
     :target: https://badge.fury.io/py/django-phenotype-ontologies
 
-.. image:: https://travis-ci.org/genomics-geek/django-phenotype-ontologies.svg?branch=develop
-    :target: https://travis-ci.org/genomics-geek/django-phenotype-ontologies
+.. image:: https://travis-ci.org/chopdgd/django-phenotype-ontologies.svg?branch=develop
+    :target: https://travis-ci.org/chopdgd/django-phenotype-ontologies
 
-.. image:: https://codecov.io/gh/genomics-geek/django-phenotype-ontologies/branch/develop/graph/badge.svg
-    :target: https://codecov.io/gh/genomics-geek/django-phenotype-ontologies
+.. image:: https://codecov.io/gh/chopdgd/django-phenotype-ontologies/branch/develop/graph/badge.svg
+    :target: https://codecov.io/gh/chopdgd/django-phenotype-ontologies
 
-.. image:: https://pyup.io/repos/github/genomics-geek/django-phenotype-ontologies/shield.svg
-     :target: https://pyup.io/repos/github/genomics-geek/django-phenotype-ontologies/
+.. image:: https://pyup.io/repos/github/chopdgd/django-phenotype-ontologies/shield.svg
+     :target: https://pyup.io/repos/github/chopdgd/django-phenotype-ontologies/
      :alt: Updates
 
-.. image:: https://pyup.io/repos/github/genomics-geek/django-phenotype-ontologies/python-3-shield.svg
-      :target: https://pyup.io/repos/github/genomics-geek/django-phenotype-ontologies/
+.. image:: https://pyup.io/repos/github/chopdgd/django-phenotype-ontologies/python-3-shield.svg
+      :target: https://pyup.io/repos/github/chopdgd/django-phenotype-ontologies/
       :alt: Python 3
 
 Django app to parse/load phenotype ontologies (OncoTree, HPO, MONDO, etc)

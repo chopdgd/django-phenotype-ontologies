@@ -31,6 +31,10 @@ INSTALLED_APPS = [
 
     "django.contrib.admin",
 
+    "rest_framework",
+    "django_filters",
+    "graphene_django",
+
     "phenotype_ontologies",
 ]
 
@@ -44,7 +48,7 @@ DJANGO_MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
- ]
+]
 
 if django.VERSION >= (1, 10):
     MIDDLEWARE = DJANGO_MIDDLEWARE
