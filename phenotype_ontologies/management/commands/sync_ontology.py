@@ -87,12 +87,16 @@ class Command(BaseCommand):
                     key = str(key).replace("Relationship('", "").replace("')", "")
                     type_obj, type_created = models.RelationshipType.objects.get_or_create(label=key)
                     for related_term in value:
-                        relations.append({
-                            "type": type_obj,
-                            "term": term_obj,
-                            # NOTE: This is to handle MONDO terms w/ source
-                            "related_term": self.extract_id(related_term.id.strip().split()[0])
-                        })
+                        # NOTE: We want source and id to store. There are a few records that don't conform
+                        if related_term.id.startswith('https://rarediseases.info.nih.gov/diseases/'):
+                            logger.warning('Relationship {0} format does not conform!'.format(related_term.id))
+                        else:
+                            relations.append({
+                                "type": type_obj,
+                                "term": term_obj,
+                                # NOTE: This is to handle MONDO terms w/ source
+                                "related_term": self.extract_id(related_term.id.strip().split()[0])
+                            })
 
                 # Create CrossReference objects
                 for xref in term.other.get('xref', []):
@@ -106,8 +110,7 @@ class Command(BaseCommand):
                         else:
                             models.CrossReference.objects.get_or_create(
                                 term=term_obj,
-                                # NOTE: pronto always returns array
-                                source=xref_data[0].upper(),
+                                source=xref_data[0].split()[0].upper(),
                                 source_value=xref_data[1].split()[0],
                             )
 
