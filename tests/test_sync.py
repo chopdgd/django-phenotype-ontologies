@@ -82,7 +82,7 @@ def test_sync(ontology_mock):
     ontology_return_mock.configure_mock(**ontology_attrs)
     ontology_mock.return_value = ontology_return_mock
 
-    call_command('sync')
+    call_command('sync_ontology', ontology='MONDO')
 
     # Check version is created correctly
     ontology_obj = models.Ontology.objects.get(label='test')
