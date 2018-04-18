@@ -20,3 +20,8 @@ History
 ++++++++++++++++++
 
 * Added better support for MONDO. A few oddities were causing errors w/ pronto.
+
+0.1.3 (2018-04-18)
+++++++++++++++++++
+
+* Updated 3rd party libs
