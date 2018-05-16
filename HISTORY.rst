@@ -25,3 +25,8 @@ History
 ++++++++++++++++++
 
 * Updated 3rd party libs
+
+0.1.4 (2018-05-16)
+++++++++++++++++++
+
+* Updated setup.py to read from requirements.txt
