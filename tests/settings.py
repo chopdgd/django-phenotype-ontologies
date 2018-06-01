@@ -33,7 +33,6 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "django_filters",
-    "graphene_django",
 
     "phenotype_ontologies",
 ]
@@ -121,14 +120,6 @@ LOGGING = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
-}
-
-
-GRAPHENE = {
-    'SCHEMA': 'tests.schema.schema',
-    'MIDDLEWARE': [
-        'graphene_django.debug.DjangoDebugMiddleware',
-    ]
 }
 
 
