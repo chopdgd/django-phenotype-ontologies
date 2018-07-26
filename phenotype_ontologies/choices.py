@@ -7,7 +7,7 @@ from model_utils import Choices
 ONTOLOGY = Choices(
     (1, 'HP', _('HP')),  # http://purl.obolibrary.org/obo/hp.obo
     (2, 'MONDO', _('MONDO')),  # http://purl.obolibrary.org/obo/mondo.obo
-    (3, 'ONCOTREE', _('ONCOTREE')),  # http://purl.obolibrary.org/obo/ncit/ncit-oncotree.owl
+    (3, 'NCIT', _('NCIT')),  # http://purl.obolibrary.org/obo/ncit/ncit-oncotree.owl
 )
 
 

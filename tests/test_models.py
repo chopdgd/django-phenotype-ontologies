@@ -35,7 +35,7 @@ class TestPhenotype_ontologies(TestCase):
     def test_source(self):
         assert self.hpo_term.source == 'HP'
         assert self.mondo_term.source == 'MONDO'
-        assert self.ncit_term.source == 'ONCOTREE'
+        assert self.ncit_term.source == 'NCIT'
 
     def test_term(self):
         assert self.hpo_term.term == 'HP:0001'

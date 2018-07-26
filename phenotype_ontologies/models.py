@@ -63,21 +63,10 @@ class Term(models.Model):
 
     @property
     def term(self):
-        if self.source == 'MONDO':
-            return '{0}:{1}'.format(
-                'MONDO',
-                self.identifier,
-            )
-        elif self.source == 'HP':
-            return '{0}:{1}'.format(
-                'HP',
-                self.identifier,
-            )
-        elif self.source == 'ONCOTREE':
-            return '{0}:{1}'.format(
-                'NCIT',
-                self.identifier,
-            )
+        return '{0}:{1}'.format(
+            self.source,
+            self.identifier,
+        )
 
     @property
     def url(self):
@@ -85,9 +74,9 @@ class Term(models.Model):
             return 'https://monarchinitiative.org/disease/{0}'.format(self.term)
         elif self.source == 'HP':
             return 'http://compbio.charite.de/hpoweb/showterm?id={0}'.format(self.term)
-        elif self.source == 'ONCOTREE':
+        elif self.source == 'NCIT':
             return 'http://purl.obolibrary.org/obo/{0}_{1}'.format(
-                'NCIT',
+                self.source,
                 self.identifier,
             )
 
