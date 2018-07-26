@@ -18,7 +18,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--ontology',
             dest='ontology',
-            choices=['HP', 'MONDO', 'ONCOTREE'],
+            choices=['HP', 'MONDO', 'NCIT'],
             help='Ontology Source',
         )
 
@@ -29,7 +29,7 @@ class Command(BaseCommand):
         elif options['ontology'] == 'MONDO':
             purl = app_settings.MONDO_PURL
 
-        elif options['ontology'] == 'ONCOTREE':
+        elif options['ontology'] == 'NCIT':
             purl = app_settings.NCIT_PURL
 
         logger.info('Downloading {0}...'.format(purl))
