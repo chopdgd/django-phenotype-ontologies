@@ -46,3 +46,10 @@ History
 `Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.1.4...v0.2.0>`_
 
 * Removed support for GraphQL
+
+0.2.1 (2018-07-27)
+++++++++++++++++++
+
+`Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.0...v0.2.1>`_
+
+* Updated NCIT to be OncoTree - since we are using the onco tree specific ontology
