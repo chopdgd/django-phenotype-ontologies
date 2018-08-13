@@ -53,3 +53,10 @@ History
 `Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.0...v0.2.1>`_
 
 * Updated NCIT to be OncoTree - since we are using the onco tree specific ontology
+
+0.2.2 (2018-08-13)
+++++++++++++++++++
+
+`Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.1...v0.2.2>`_
+
+* Updated 3rd party requirements. Some requirements had changed so it was causing failures
