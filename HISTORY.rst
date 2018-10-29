@@ -60,3 +60,10 @@ History
 `Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.1...v0.2.2>`_
 
 * Updated 3rd party requirements. Some requirements had changed so it was causing failures
+
+0.2.3 (2018-10-29)
+++++++++++++++++++
+
+`Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.2...v0.2.3>`_
+
+* Updated 3rd party requirements.
