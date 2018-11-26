@@ -7,12 +7,23 @@ test_django-phenotype-ontologies
 
 Tests for `django-phenotype-ontologies` models module.
 """
-
 from django.test import TestCase
+
 from model_mommy import mommy
 
+from . import fixtures
 
-class TestPhenotype_ontologies(TestCase):
+
+class TestOntology(TestCase):
+
+    def setUp(self):
+        self.instance = fixtures.Ontology()
+
+    def test_str(self):
+        assert str(self.instance) == 'HP Ontology'
+
+
+class TestTerm(TestCase):
 
     def setUp(self):
         self.hpo_term = mommy.make(
@@ -32,6 +43,11 @@ class TestPhenotype_ontologies(TestCase):
             identifier='0003',
         )
 
+    def test_str(self):
+        assert str(self.hpo_term) == 'HP:0001'
+        assert str(self.mondo_term) == 'MONDO:0002'
+        assert str(self.ncit_term) == 'NCIT:0003'
+
     def test_source(self):
         assert self.hpo_term.source == 'HP'
         assert self.mondo_term.source == 'MONDO'
@@ -49,3 +65,39 @@ class TestPhenotype_ontologies(TestCase):
 
     def tearDown(self):
         pass
+
+
+class TestSynonym(TestCase):
+
+    def setUp(self):
+        self.instance = fixtures.Synonym()
+
+    def test_str(self):
+        assert str(self.instance) == 'HP:identifier'
+
+
+class TestCrossReference(TestCase):
+
+    def setUp(self):
+        self.instance = fixtures.CrossReference()
+
+    def test_str(self):
+        assert str(self.instance) == 'HP:identifier'
+
+
+class TestRelationship(TestCase):
+
+    def setUp(self):
+        self.instance = fixtures.Relationship()
+
+    def test_str(self):
+        assert str(self.instance) == 'HP:identifier'
+
+
+class TestRelationshipType(TestCase):
+
+    def setUp(self):
+        self.instance = fixtures.RelationshipType()
+
+    def test_str(self):
+        assert str(self.instance) == 'RelationshipType'

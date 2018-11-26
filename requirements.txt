@@ -7,4 +7,4 @@ django-filter==2.0.0
 django-genomix==0.6.4
 django-model-utils==3.1.2
 
-pronto==0.11.0
+pronto==0.11.1
