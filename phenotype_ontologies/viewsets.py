@@ -13,7 +13,7 @@ class TermViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.Term.objects.fast()
     serializer_class = serializers.TermSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    filter_class = filters.TermFilter
+    filterset_class = filters.TermFilter
     search_fields = (
         'label',
         'description',
@@ -27,5 +27,5 @@ class CrossReferenceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.CrossReference.objects.fast()
     serializer_class = serializers.CrossReferenceSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    filter_class = filters.CrossReferenceFilter
+    filterset_class = filters.CrossReferenceFilter
     search_fields = ('source', 'source_value', )

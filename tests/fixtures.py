@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from model_mommy import mommy
-import pytest
 
 
-@pytest.fixture
 def Ontology():
-
     return mommy.make(
         'phenotype_ontologies.Ontology',
         type=1,
@@ -14,9 +11,7 @@ def Ontology():
     )
 
 
-@pytest.fixture
 def Term():
-
     return mommy.make(
         'phenotype_ontologies.Term',
         ontology=Ontology(),
@@ -29,9 +24,7 @@ def Term():
     )
 
 
-@pytest.fixture
 def Synonym():
-
     return mommy.make(
         'phenotype_ontologies.Synonym',
         term=Term(),
@@ -40,9 +33,7 @@ def Synonym():
     )
 
 
-@pytest.fixture
 def CrossReference():
-
     return mommy.make(
         'phenotype_ontologies.CrossReference',
         term=Term(),
@@ -51,9 +42,7 @@ def CrossReference():
     )
 
 
-@pytest.fixture
 def Relationship():
-
     return mommy.make(
         'phenotype_ontologies.Relationship',
         type=RelationshipType(),
@@ -61,9 +50,7 @@ def Relationship():
     )
 
 
-@pytest.fixture
 def RelationshipType():
-
     return mommy.make(
         'phenotype_ontologies.RelationshipType',
         label='RelationshipType'
