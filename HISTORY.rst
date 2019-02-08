@@ -74,3 +74,11 @@ History
 `Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.3...v0.2.4>`_
 
 * Updated 3rd party requirements.
+
+0.2.5 (2019-02-08)
+++++++++++++++++++
+
+`Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.4...v0.2.5>`_
+
+* Updated 3rd party requirements.
+* Updated tests to use py.test fixtures
