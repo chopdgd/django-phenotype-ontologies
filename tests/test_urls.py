@@ -11,14 +11,9 @@ from django.urls import reverse, resolve
 
 from test_plus.test import TestCase
 
-from . import fixtures
-
 
 class TestTermURLs(TestCase):
     """Test URL patterns for HPO Terms."""
-
-    def setUp(self):
-        self.instance = fixtures.Term()
 
     def test_list_reverse(self):
         """phenotype_ontologies:term-list should reverse to /phenotype-terms/."""
@@ -42,9 +37,6 @@ class TestTermURLs(TestCase):
 
 class TestCrossReferenceURLs(TestCase):
     """Test URL patterns for HPO Term Cross References."""
-
-    def setUp(self):
-        self.instance = fixtures.CrossReference()
 
     def test_list_reverse(self):
         """phenotype_ontologies:crossreference-list should reverse to /phenotype-xrefs/."""

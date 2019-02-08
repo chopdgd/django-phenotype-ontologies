@@ -7,97 +7,51 @@ test_django-phenotype-ontologies
 
 Tests for `django-phenotype-ontologies` models module.
 """
-from django.test import TestCase
+import pytest
 
-from model_mommy import mommy
-
-from . import fixtures
+from .fixtures import *
 
 
-class TestOntology(TestCase):
+@pytest.mark.django_db
+def test_Term(Term, Ontology):
+    hpo_term = Term(ontology=Ontology(type=1), identifier='001')
+    assert str(hpo_term) == 'HP:001'
+    assert hpo_term.source == 'HP'
+    assert hpo_term.term == 'HP:001'
+    assert hpo_term.url == 'http://compbio.charite.de/hpoweb/showterm?id=HP:001'
 
-    def setUp(self):
-        self.instance = fixtures.Ontology()
+    mondo_term = Term(ontology=Ontology(type=2), identifier='002')
+    assert str(mondo_term) == 'MONDO:002'
+    assert mondo_term.source == 'MONDO'
+    assert mondo_term.term == 'MONDO:002'
+    assert mondo_term.url == 'https://monarchinitiative.org/disease/MONDO:002'
 
-    def test_str(self):
-        assert str(self.instance) == 'HP Ontology'
-
-
-class TestTerm(TestCase):
-
-    def setUp(self):
-        self.hpo_term = mommy.make(
-            'phenotype_ontologies.Term',
-            ontology=mommy.make('phenotype_ontologies.Ontology', type=1),
-            identifier='0001',
-        )
-        self.mondo_term = mommy.make(
-            'phenotype_ontologies.Term',
-            ontology=mommy.make('phenotype_ontologies.Ontology', type=2),
-            identifier='0002'
-        )
-
-        self.ncit_term = mommy.make(
-            'phenotype_ontologies.Term',
-            ontology=mommy.make('phenotype_ontologies.Ontology', type=3),
-            identifier='0003',
-        )
-
-    def test_str(self):
-        assert str(self.hpo_term) == 'HP:0001'
-        assert str(self.mondo_term) == 'MONDO:0002'
-        assert str(self.ncit_term) == 'NCIT:0003'
-
-    def test_source(self):
-        assert self.hpo_term.source == 'HP'
-        assert self.mondo_term.source == 'MONDO'
-        assert self.ncit_term.source == 'ONCOTREE'
-
-    def test_term(self):
-        assert self.hpo_term.term == 'HP:0001'
-        assert self.mondo_term.term == 'MONDO:0002'
-        assert self.ncit_term.term == 'NCIT:0003'
-
-    def test_url(self):
-        assert self.hpo_term.url == 'http://compbio.charite.de/hpoweb/showterm?id=HP:0001'
-        assert self.mondo_term.url == 'https://monarchinitiative.org/disease/MONDO:0002'
-        assert self.ncit_term.url == 'http://purl.obolibrary.org/obo/NCIT_0003'
-
-    def tearDown(self):
-        pass
+    ncit_term = Term(ontology=Ontology(type=3), identifier='003')
+    assert str(ncit_term) == 'NCIT:003'
+    assert ncit_term.source == 'ONCOTREE'
+    assert ncit_term.term == 'NCIT:003'
+    assert ncit_term.url == 'http://purl.obolibrary.org/obo/NCIT_003'
 
 
-class TestSynonym(TestCase):
-
-    def setUp(self):
-        self.instance = fixtures.Synonym()
-
-    def test_str(self):
-        assert str(self.instance) == 'HP:identifier'
+@pytest.mark.django_db
+def test_Synonym(Synonym):
+    instance = Synonym()
+    assert str(instance) == 'HP:Term'
 
 
-class TestCrossReference(TestCase):
-
-    def setUp(self):
-        self.instance = fixtures.CrossReference()
-
-    def test_str(self):
-        assert str(self.instance) == 'HP:identifier'
+@pytest.mark.django_db
+def test_CrossReference(CrossReference):
+    instance = CrossReference()
+    assert str(instance) == 'HP:Term'
 
 
-class TestRelationship(TestCase):
-
-    def setUp(self):
-        self.instance = fixtures.Relationship()
-
-    def test_str(self):
-        assert str(self.instance) == 'HP:identifier'
+@pytest.mark.django_db
+def test_RelationshipType(RelationshipType):
+    instance = RelationshipType(label='RelationshipType')
+    assert str(instance) == 'RelationshipType'
 
 
-class TestRelationshipType(TestCase):
-
-    def setUp(self):
-        self.instance = fixtures.RelationshipType()
-
-    def test_str(self):
-        assert str(self.instance) == 'RelationshipType'
+@pytest.mark.django_db
+def test_Relationship(Relationship):
+    instance = Relationship()
+    assert str(instance) == 'HP:Term'

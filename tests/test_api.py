@@ -2,155 +2,150 @@
 # -*- coding: utf-8 -*-
 
 """
-test django-hpo-terms
+test django-phenotype-ontologies
 ------------
-Tests for `django-hpo-terms` API.
+Tests for `django-phenotype-ontologies` API.
 """
-
-from django.contrib.auth import get_user_model
 
 try:
     from django.urls import reverse
 except:
     from django.core.urlresolvers import reverse
 
+import pytest
 from rest_framework import status
-from rest_framework.test import APIClient, APITestCase
+from rest_framework.test import APIClient
 
-from . import fixtures
-
-
-class TestTermAPI(APITestCase):
-
-    def setUp(self):
-        """Define the test client and other test variables."""
-        self.client = APIClient()
-
-        # Create instance for GET, PUT, PATCH, DELETE Methods
-        fixtures.Term()
-
-    def test_post(self):
-        """Test POST."""
-
-        response = self.client.post(
-            reverse('phenotype_ontologies:term-list'),
-            {},
-            format='json'
-        )
-
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+from .fixtures import *
 
 
-    def test_get(self):
-        """Test GET."""
+@pytest.mark.django_db
+def setup_client(user=None):
+    client = APIClient()
 
-        response = self.client.get(
-            reverse('phenotype_ontologies:term-list'),
-            format='json'
-        )
+    if user:
+        client.force_authenticate(user=user)
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_200_OK
-
-    def test_put(self):
-        """Test PUT."""
-
-        response = self.client.put(
-            reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}),
-            {},
-            format='json'
-        )
-
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
-
-    def test_patch(self):
-        """Test PATCH."""
-
-        response = self.client.patch(
-            reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}),
-            {},
-            format='json'
-        )
-
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
-
-    def test_delete(self):
-        """Test DELETE."""
-        response = self.client.delete(
-            reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}),
-            format='json'
-        )
-
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    return client
 
 
-class TestCrossReferenceAPI(APITestCase):
+def test_api_permissions():
+    client = setup_client()
 
-    def setUp(self):
-        """Define the test client and other test variables."""
-        self.client = APIClient()
+    response = client.post(reverse('phenotype_ontologies:term-list'), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-        # Create instance for GET, PUT, PATCH, DELETE Methods
-        fixtures.Term()
+    response = client.post(reverse('phenotype_ontologies:crossreference-list'), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-    def test_post(self):
-        """Test POST."""
+    response = client.put(reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-        response = self.client.post(
-            reverse('phenotype_ontologies:crossreference-list'),
-            {},
-            format='json'
-        )
+    response = client.put(reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    response = client.patch(reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+    response = client.patch(reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}), {})
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+    response = client.delete(reverse('phenotype_ontologies:term-detail', kwargs={'pk': 1}))
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+
+    response = client.delete(reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}))
+    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
 
-    def test_get(self):
-        """Test GET."""
+@pytest.mark.django_db
+def test_get_terms_list(Term):
+    Term(pk=999)
+    client = setup_client()
+    response = client.get(reverse('phenotype_ontologies:term-list'), format='json')
+    assert response.status_code == status.HTTP_200_OK
+    assert len(response.json().get('results', [])) == 1
 
-        response = self.client.get(
-            reverse('phenotype_ontologies:crossreference-list'),
-            format='json'
-        )
+    observed_keys = list(response.json()['results'][0].keys())
+    expected_keys = [
+        'id',
+        'ontology',
+        'term',
+        'label',
+        'description',
+        'url',
+        'synonyms',
+        'xrefs',
+        'relationships',
+        'created_by',
+        'created',
+        'modified',
+    ]
+    difference = set(observed_keys).difference(set(expected_keys))
+    assert len(difference) == 0
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_200_OK
 
-    def test_put(self):
-        """Test PUT."""
+@pytest.mark.django_db
+def test_get_terms_detail(Term):
+    Term(pk=999)
+    client = setup_client()
+    response = client.get(reverse('phenotype_ontologies:term-detail', kwargs={'pk': 999}), format='json')
+    assert response.status_code == status.HTTP_200_OK
 
-        response = self.client.put(
-            reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}),
-            {},
-            format='json'
-        )
+    observed_keys = list(response.json().keys())
+    expected_keys = [
+        'id',
+        'ontology',
+        'term',
+        'label',
+        'description',
+        'url',
+        'synonyms',
+        'xrefs',
+        'relationships',
+        'created_by',
+        'created',
+        'modified',
+    ]
+    difference = set(observed_keys).difference(set(expected_keys))
+    assert len(difference) == 0
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-    def test_patch(self):
-        """Test PATCH."""
+@pytest.mark.django_db
+def test_get_xrefs_list(CrossReference):
+    CrossReference(pk=999)
+    client = setup_client()
+    response = client.get(reverse('phenotype_ontologies:crossreference-list'), format='json')
+    assert response.status_code == status.HTTP_200_OK
+    assert len(response.json().get('results', [])) == 1
 
-        response = self.client.patch(
-            reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}),
-            {},
-            format='json'
-        )
+    observed_keys = list(response.json()['results'][0].keys())
+    expected_keys = [
+        'id',
+        'term',
+        'source',
+        'source_value',
+        'created',
+        'modified',
+    ]
+    difference = set(observed_keys).difference(set(expected_keys))
+    assert len(difference) == 0
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
 
-    def test_delete(self):
-        """Test DELETE."""
-        response = self.client.delete(
-            reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 1}),
-            format='json'
-        )
+@pytest.mark.django_db
+def test_get_xrefs_detail(CrossReference):
+    CrossReference(pk=999)
+    client = setup_client()
+    response = client.get(reverse('phenotype_ontologies:crossreference-detail', kwargs={'pk': 999}), format='json')
+    assert response.status_code == status.HTTP_200_OK
 
-        # Make sure to recieve correct HTTP code
-        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    observed_keys = list(response.json().keys())
+    expected_keys = [
+        'id',
+        'term',
+        'source',
+        'source_value',
+        'created',
+        'modified',
+    ]
+    difference = set(observed_keys).difference(set(expected_keys))
+    assert len(difference) == 0
