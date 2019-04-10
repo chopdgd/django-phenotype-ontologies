@@ -82,3 +82,11 @@ History
 
 * Updated 3rd party requirements.
 * Updated tests to use py.test fixtures
+
+0.2.6 (2019-04-10)
+++++++++++++++++++
+
+`Full Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.5...v0.2.6>`_
+
+* Updated 3rd party requirements.
+* Updated travis to use xenial distribution. Django 2.1 dropped support for SQLite < 3.8.3
