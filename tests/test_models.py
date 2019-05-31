@@ -9,7 +9,7 @@ Tests for `django-phenotype-ontologies` models module.
 """
 import pytest
 
-from .fixtures import *
+from .fixtures import *  # NOQA
 
 
 @pytest.mark.django_db
