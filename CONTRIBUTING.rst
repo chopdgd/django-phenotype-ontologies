@@ -13,7 +13,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/chopdgd/django-phenotype-ontologies/issues.
+Report bugs at https://github.com/genomics-geek/django-phenotype-ontologies/issues.
 
 If you are reporting a bug, please include:
 
@@ -36,14 +36,14 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-Django Phenotype Ontologies could always use more documentation, whether as part of the 
-official Django Phenotype Ontologies docs, in docstrings, or even on the web in blog posts,
+django-phenotype-ontologies could always use more documentation, whether as part of the 
+official django-phenotype-ontologies docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/chopdgd/django-phenotype-ontologies/issues.
+The best way to send feedback is to file an issue at https://github.com/genomics-geek/django-phenotype-ontologies/issues.
 
 If you are proposing a feature:
 
@@ -101,7 +101,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy. Check 
-   https://travis-ci.org/chopdgd/django-phenotype-ontologies/pull_requests
+   https://travis-ci.org/genomics-geek/django-phenotype-ontologies/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
 Tips

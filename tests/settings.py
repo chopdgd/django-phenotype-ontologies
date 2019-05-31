@@ -11,7 +11,7 @@ DEBUG = True
 USE_TZ = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "33333333333333333333333333333333333333333333333333"
+SECRET_KEY = "0^7w@()8#$unq0rn%!wuti&m=tpp56^ao-8x)354&#_^z04x^%"
 
 DATABASES = {
     "default": {
@@ -28,11 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
-
     "django.contrib.admin",
-
-    "rest_framework",
-    "django_filters",
+    "django.contrib.messages",
 
     "phenotype_ontologies",
 ]
@@ -91,6 +88,7 @@ TEMPLATES = [
     },
 ]
 
+STATIC_URL = '/static/'
 
 LOGGING = {
     'version': 1,
@@ -105,8 +103,8 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
-            },
         },
+    },
     'loggers': {
         'phenotype_ontologies.management.commands.sync': {
             'handlers': ['log_to_stdout'],
@@ -121,6 +119,3 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
 }
-
-
-STATIC_URL = '/static/'

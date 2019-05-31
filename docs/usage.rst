@@ -2,7 +2,7 @@
 Usage
 =====
 
-To use Django Phenotype Ontologies in a project, add it to your `INSTALLED_APPS`:
+To use django-phenotype-ontologies in a project, add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
 
@@ -12,7 +12,7 @@ To use Django Phenotype Ontologies in a project, add it to your `INSTALLED_APPS`
         ...
     )
 
-Add Django Phenotype Ontologies's URL patterns:
+Add django-phenotype-ontologies's URL patterns:
 
 .. code-block:: python
 

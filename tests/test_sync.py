@@ -12,7 +12,6 @@ from django.core.management import call_command
 import mock
 import pytest
 
-from genomix import utils
 from phenotype_ontologies import models
 import pronto
 
@@ -75,7 +74,7 @@ def test_sync(ontology_mock):
 
     # Mock Ontology
     ontology_attrs = {
-        'meta': { 'data-version': ['test'] },
+        'meta': {'data-version': ['test']},
         '__iter__': mock.Mock(return_value=iter([term_mock, relation_mock])),
     }
     ontology_return_mock = mock.Mock()
@@ -99,7 +98,6 @@ def test_sync(ontology_mock):
     assert term_object.created_by == 'created_by'
     assert term_object.created == '1987-12-18'
     assert term_object.alternate_ids == '0000002'
-
 
     # Check that Synonym is created correctly
     term_synonym_objects = models.Synonym.objects.all()
