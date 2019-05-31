@@ -90,3 +90,10 @@ History
 
 * Updated 3rd party requirements.
 * Updated travis to use xenial distribution. Django 2.1 dropped support for SQLite < 3.8.3
+
+0.2.7 (2019-05-31)
+++++++++++++++++++
+
+`0.2.7 Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v0.2.6...v0.2.7>`_
+
+* Updated package to use latest cookiecutter template
