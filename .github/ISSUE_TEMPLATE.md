@@ -1,4 +1,4 @@
-* Django Phenotype Ontologies version:
+* django-phenotype-ontologies version:
 * Django version:
 * Python version:
 * Operating System:

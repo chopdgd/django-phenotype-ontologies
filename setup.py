@@ -57,7 +57,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Michael A. Gonzalez',
     author_email='GonzalezMA@email.chop.edu',
-    url='https://github.com/chopdgd/django-phenotype-ontologies',
+    url='https://github.com/genomics-geek/django-phenotype-ontologies',
     packages=[
         'phenotype_ontologies',
     ],
@@ -67,11 +67,10 @@ setup(
     zip_safe=False,
     keywords='django-phenotype-ontologies',
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Framework :: Django',
-        'Framework :: Django :: 1.11',
+        'Development Status :: 4 - Beta',
         'Framework :: Django :: 2.0',
         'Framework :: Django :: 2.1',
+        'Framework :: Django :: 2.2',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
