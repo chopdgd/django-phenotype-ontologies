@@ -91,6 +91,10 @@ class Term(models.Model):
                 self.identifier,
             )
 
+    def save(self, *args, **kwargs):
+        self.clean_fields()
+        return super(Term, self).save(*args, **kwargs)
+
 
 class Synonym(TimeStampedModel):
     """Synonms for HPO terms."""
