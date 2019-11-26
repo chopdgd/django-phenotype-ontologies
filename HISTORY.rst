@@ -132,3 +132,10 @@ History
 `1.0.1 Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v1.0.0...v1.0.1>`_
 
 * pronto > v1.0.0 is not compatible
+
+1.1.0 (2019-11-26)
+++++++++++++++++++
+
+`1.1.0 Changelog <https://github.com/chopdgd/django-phenotype-ontologies/compare/v1.0.1...v1.1.0>`_
+
+* Updated dependencies
