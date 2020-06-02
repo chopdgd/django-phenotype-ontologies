@@ -53,6 +53,7 @@ class Term(models.Model):
         index_together = [
             ['ontology', 'identifier']
         ]
+        unique_together = ('ontology', 'identifier')
 
     def __str__(self):
         return self.term
