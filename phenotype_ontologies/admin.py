@@ -13,9 +13,11 @@ class OntologyAdmin(admin.ModelAdmin):
 
 class TermAdmin(admin.ModelAdmin):
     model = models.Term
-    list_display = ('ontology', 'term', 'label', 'created_by', 'created', 'modified')
+    list_display = ('term', 'ontology', 'label', 'created_by', 'created', 'modified')
     raw_id_fields = ('ontology', )
-    search_fields = ('ontology__label', 'identifier', 'label', 'description', 'synonyms__description')
+    search_fields = ('ontology__label', 'identifier', 'label',
+                     'description', 'synonyms__description')
+    list_filter = ('ontology__active', 'ontology__type', 'ontology__label')
     save_as = True
 
 
