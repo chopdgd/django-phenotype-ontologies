@@ -32,7 +32,10 @@ class Term(models.Model):
     Source: http://purl.obolibrary.org/obo/hp.obo
     """
 
-    ontology = models.ForeignKey('phenotype_ontologies.Ontology', on_delete=models.CASCADE)
+    ontology = models.ForeignKey(
+        'phenotype_ontologies.Ontology',
+        on_delete=models.CASCADE
+    )
     identifier = models.CharField(max_length=25, db_index=True)
     label = models.CharField(max_length=255, db_index=True)
     description = models.TextField(blank=True)
@@ -53,6 +56,7 @@ class Term(models.Model):
         index_together = [
             ['ontology', 'identifier']
         ]
+        unique_together = ('ontology', 'identifier')
 
     def __str__(self):
         return self.term
@@ -82,9 +86,13 @@ class Term(models.Model):
     @property
     def url(self):
         if self.source == 'MONDO':
-            return 'https://monarchinitiative.org/disease/{0}'.format(self.term)
+            return 'https://monarchinitiative.org/disease/{0}'.format(
+                self.term
+            )
         elif self.source == 'HP':
-            return 'http://compbio.charite.de/hpoweb/showterm?id={0}'.format(self.term)
+            return 'http://compbio.charite.de/hpoweb/showterm?id={0}'.format(
+                self.term
+            )
         elif self.source == 'ONCOTREE':
             return 'http://purl.obolibrary.org/obo/{0}_{1}'.format(
                 'NCIT',
@@ -105,7 +113,11 @@ class Synonym(TimeStampedModel):
         on_delete=models.CASCADE,
     )
     description = models.TextField(blank=True)
-    scope = models.PositiveSmallIntegerField(choices=choices.SYNONYM_SCOPES, blank=True, null=True)
+    scope = models.PositiveSmallIntegerField(
+        choices=choices.SYNONYM_SCOPES,
+        blank=True,
+        null=True
+    )
 
     objects = managers.SynonymQuerySet.as_manager()
 
