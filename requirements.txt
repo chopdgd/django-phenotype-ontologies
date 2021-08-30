@@ -7,4 +7,4 @@ django-filter==2.4.0
 django-genomix==1.1.0
 django-model-utils==4.1.1
 
-pronto==0.12.2  # Need to look into making it compatible with v1.  See #88
+pronto==2.4.3  # Need to look into making it compatible with v1.  See #88
